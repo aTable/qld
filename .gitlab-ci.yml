@@ -1,0 +1,15 @@
+image: node:latest
+
+pages:
+  stage: deploy
+  script:
+  - npm install
+  - npm run build-Release
+  - mkdir .public
+  - cp -r build/* .public
+  - mv .public/* public --backup=numbered
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
