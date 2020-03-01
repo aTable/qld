@@ -2,6 +2,7 @@
   "name": "qld",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://atable.github.io/qld",
   "scripts": {
     "s": "npm run start",
     "start": "npm-run-all -p start-js",
