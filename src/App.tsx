@@ -23,7 +23,7 @@ L.Marker.prototype.options.icon = L.icon({
 
 const App = () => {
   return (
-    <Router basename="qld">
+    <Router>
       <div id="application">
         <Navbar />
         <Switch>
