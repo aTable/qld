@@ -7,11 +7,11 @@
     "s": "npm run start",
     "start": "npm-run-all -p start-js",
     "start-js": "cross-env HTTPS=true react-scripts start",
-    "build": "react-scripts build && npm run generate-docs",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "prettier-watch": "onchange '**/*.js' -- prettier --write {{changed}}",
-    "generate-docs": "jsdoc src -c .jsdoc.json --recurse"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -61,12 +61,9 @@
   },
   "devDependencies": {
     "cross-env": "^6.0.3",
-    "docdash": "^1.1.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-prettier": "^3.1.1",
-    "jsdoc": "^3.6.3",
-    "minami": "^1.2.3",
-    "mobx-react-devtools": "^6.1.1",
+    "gh-pages": "^2.2.0",
     "node-sass-chokidar": "^1.4.0",
     "npm-run-all": "^4.1.5",
     "onchange": "^6.1.0",
