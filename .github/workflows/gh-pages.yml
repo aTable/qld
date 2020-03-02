@@ -3,18 +3,30 @@ on: [push]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
       with:
         persist-credentials: false
         SSH: true
-                
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm run build
+      env:
+        CI: true
+
     - name: Install SSH Client
       uses: webfactory/ssh-agent@v0.2.0
       with:
-        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-
+        ssh-private-key: ${{ secrets.DEPLOY_KEY }}          
+      
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
